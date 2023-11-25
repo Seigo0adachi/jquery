@@ -63,23 +63,24 @@
     let isFortuneVisible = false;
 
     $('.js-fortune-start').click(function() {
-      for (let i in fortuneResults) {
-        const rand = Math.floor(Math.random() * 3);
-
-        const selectedFortune = fortuneResults[i][rand];
-
-        $("." + i + " .stars").text(fortuneResults[i][rand]['stars']);
-        $("." + i + " .detail").text(fortuneResults[i][rand]['detail']);
-      }
-
       if (isFortuneVisible) {
         // もう一度占うボタンが表示されている場合、結果を非表示にする
         $('.result').fadeOut(1000);
+        // ボタンのテキストを切り替える
         $('.js-fortune-start').text("運勢を占う！");
         isFortuneVisible = false;
       } else {
+        for (let i in fortuneResults) {
+          const rand = Math.floor(Math.random() * 3);
+  
+          const selectedFortune = fortuneResults[i][rand];
+  
+          $("." + i + " .stars").text(fortuneResults[i][rand]['stars']);
+          $("." + i + " .detail").text(fortuneResults[i][rand]['detail']);
+        }
         // 結果を表示する
         $('.result').fadeIn(1000);
+        // ボタンのテキストを切り替える
         $('.js-fortune-start').text("もう一度占う！");
         isFortuneVisible = true;
       }
