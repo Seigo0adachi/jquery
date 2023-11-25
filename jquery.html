@@ -70,7 +70,22 @@
             $("." + i + " .detail").text(fortuneResults[i][rand]['detail']);
 
             $('.result').fadeIn(1000);
+            
           }
+          $('.js-fortune-start').toggleClass('active');
+
+          // もう一度占うボタンが表示されている場合、結果を非表示にする
+          if ($('.js-fortune-start').hasClass('active')) {
+            $('.result').hide();
+          }
+          });
+
+          // ボタンがクリックされたときの処理を追加
+          $('.js-fortune-start').click(function() {
+          // ボタンのテキストを切り替える
+          $(this).text(function(i, text) {
+            return text === "運勢を占う！" ? "もう一度占う！" : "運勢を占う！";
+          });
         });
 
     </script>
